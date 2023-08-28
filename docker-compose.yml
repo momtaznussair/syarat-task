@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx.dockerfile
+    ports:
+      - 6666:6666
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - php
+    networks:
+      - syarat
+  
+  php:
+    build:
+      context: .
+      dockerfile: php.dockerfile
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - syarat
+  
+  npm:
+    image: node:current-alpine
+    container_name: syarat_npm
+    volumes:
+      - ./src:/var/www/html
+    entrypoint: ["npm"]
+    working_dir: /var/www/html
+
+  mysql:
+    image: mysql:8
+    container_name: syarat_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: dev
+      MYSQL_DATABASE: syarat_db
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: dev
+      MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
+    ports:
+      - "6680:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - syarat
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 6622:80
+    networks:
+    - syarat
+
+networks:
+  syarat:
+    external: true
+
+  
