@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Departments\CreateDepartment;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome'); // Example default route
+});
+
+// Department Routes
+Route::prefix('departments')->name('departments.')->group(function () {
+    Route::get('create', CreateDepartment::class)->name('create');
 });
