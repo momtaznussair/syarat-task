@@ -31,4 +31,8 @@ class Task extends Model
     protected $attributes = [
         'status' => TaskStatusEnum::Pending,
     ];
+
+    public function employee() {
+        return $this->belongsTo(Employee::class);
+    }
 }

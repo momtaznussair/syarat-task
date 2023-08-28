@@ -42,4 +42,21 @@ class Employee extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function employees() {
+        return $this->hasMany(Employee::class, 'manager_id');
+    }
+
+    public function manager() {
+        return $this->belongsTo(Employee::class, 'manager_id');
+    }
+
+    public function tasks() {
+        return $this->hasMany(Task::class);
+    }
+
+    public function department() {
+        return $this->belongsTo(Department::class);
+    }
+
 }
