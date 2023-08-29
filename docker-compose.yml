@@ -27,7 +27,7 @@ services:
     image: node:current-alpine
     container_name: syarat_npm
     volumes:
-      - ./src:/var/www/html
+      - ./:/var/www/html
     entrypoint: ["npm"]
     working_dir: /var/www/html
 
