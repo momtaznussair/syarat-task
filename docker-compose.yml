@@ -1,68 +1,26 @@
-version: '3.8'
+# Copyright VMware, Inc.
+# SPDX-License-Identifier: APACHE-2.0
+
+version: '2'
 
 services:
-  nginx:
-    build:
-      context: .
-      dockerfile: nginx.dockerfile
+  mariadb:
+    image: docker.io/bitnami/mariadb:10.6
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=bn_myapp
+      - MARIADB_DATABASE=bitnami_myapp
+  myapp:
+    image: docker.io/bitnami/laravel:10
     ports:
-      - 9000:9000
+      - '9000:9000'
+    environment:
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_USERNAME=bn_myapp
+      - DB_DATABASE=bitnami_myapp
     volumes:
-      - ./:/var/www/html
+      - './:/app'
     depends_on:
-      - php
-    networks:
-      - syarat
-  
-  php:
-    build:
-      context: .
-      dockerfile: php.dockerfile
-    volumes:
-      - ./:/var/www/html
-    networks:
-      - syarat
-  
-  npm:
-    image: node:current-alpine
-    container_name: syarat_npm
-    volumes:
-      - ./:/var/www/html
-    entrypoint: ["npm"]
-    working_dir: /var/www/html
-
-  mysql:
-    image: mysql:8
-    container_name: syarat_mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: dev
-      MYSQL_DATABASE: syarat_db
-      MYSQL_USER: dev
-      MYSQL_PASSWORD: dev
-      MYSQL_AUTHENTICATION_PLUGIN: mysql_native_password
-    ports:
-      - "6680:3306"
-    volumes:
-      - ./mysql:/var/lib/mysql
-    networks:
-      - syarat
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    links:
-      - mysql
-    environment:
-      PMA_HOST: mysql
-      PMA_PORT: 3306
-      PMA_ARBITRARY: 1
-    restart: always
-    ports:
-      - 6622:80
-    networks:
-    - syarat
-
-networks:
-  syarat:
-    external: true
-
-  
+      - mariadb
