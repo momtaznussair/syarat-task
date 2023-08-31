@@ -1,20 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $title ?? 'Syaaraat PHP Task' }}</title>
-    @livewireStyles
-</head>
-<body>
-    <x-header />
+    <x-layouts.head />    
+	{{-- begin::Body --}}
+	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed">
 
-    <main>
-        {{ $slot }}
-    </main>
+        {{-- begin::Main --}}
+		<div class="d-flex flex-column flex-root">
+			<div class="page d-flex flex-row flex-column-fluid">
 
-    <x-footer />
-    @livewireScripts
-</body>
+				<x-layouts.aside-menu />
+
+				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+    				<x-layouts.header />
+
+                    <x-layouts.breadcrumb />
+
+					<!--begin::Content-->
+					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+						<div id="kt_content_container" class="container-xxl">
+							{{ $slot }}
+						</div>
+					</div>
+					<!--end::Content-->
+
+                    <x-layouts.footer />
+				</div>
+			</div>
+		</div>
+		{{-- end::Main --}}
+
+		{{-- begin::Scrolltop --}}
+		<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+			<i class="ki-outline ki-arrow-up"></i>
+		</div>
+		{{-- end::Scrolltop --}}
+
+        <x-layouts.scripts />    
+	</body>
+	{{-- end::Body --}}
 </html>
