@@ -24,3 +24,17 @@ services:
       - './:/app'
     depends_on:
       - mariadb
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mariadb
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 9999:80 
+    depends_on:
+    - mariadb
