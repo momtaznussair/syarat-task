@@ -15,8 +15,8 @@ use App\Livewire\Departments\CreateDepartment;
 */
 
 Route::get('/', function () {
-    // return view('welcome'); // Example default route
-});
+    return view('welcome'); // Example default route
+})->name('home');
 
 // Department Routes
 Route::prefix('departments')->name('departments.')->group(function () {
