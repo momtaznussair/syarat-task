@@ -14,7 +14,7 @@ services:
   myapp:
     image: docker.io/bitnami/laravel:10
     ports:
-      - '9000:9000'
+      - '9000:8000'
     environment:
       - DB_HOST=mariadb
       - DB_PORT=3306
