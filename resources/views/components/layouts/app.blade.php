@@ -38,6 +38,8 @@
 
         <x-layouts.scripts />
 		
+		{{ $pageScripts ?? '' }}
+
 	</body>
 	{{-- end::Body --}}
 </html>
