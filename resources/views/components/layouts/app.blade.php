@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-    <x-layouts.head :title="$title ?? null" /> 
+	
+    <x-layouts.head :title="$title ?? ''">
+		{{ $pageStyles ?? '' }}
+	</x-layouts.head> 
 
 	{{-- begin::Body --}}
 	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed">
@@ -36,9 +39,10 @@
 		</div>
 		{{-- end::Scrolltop --}}
 
-        <x-layouts.scripts />
-		
-		{{ $pageScripts ?? '' }}
+        <x-layouts.scripts>
+			{{ $pageScripts ?? '' }}
+		</x-layouts.scripts>
+
 
 	</body>
 	{{-- end::Body --}}
