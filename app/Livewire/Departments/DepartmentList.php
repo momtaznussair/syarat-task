@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use App\Livewire\Common\Delete;
+use Livewire\Attributes\Computed;
 use App\Services\DepartmentService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -21,6 +22,10 @@ class DepartmentList extends Component
 
     public $search;
 
+    protected $listeners = [
+        'refresh' => '$refresh',
+    ];
+
     public function render(DepartmentService $departmentService)
     {
         return view('livewire.departments.department-list', [
@@ -35,6 +40,10 @@ class DepartmentList extends Component
     public function confirmDelete($department) {
         $this->department = $department;
         $this->dispatch('confirmDeletion', $department)->to(Delete::class);
+    }
+
+    public function update($department) {
+        $this->dispatch('updateDepartment', $department)->to(EditDepartment::class);
     }
 
 

@@ -54,7 +54,7 @@
                         <td>{{ $department->created_at?->toFormattedDateString() }}</td>
                         <td>
                             <span  wire:click="confirmDelete({{ $department }})" title="delete"> <i class="fa fa-trash text-danger fs-5 p-5" aria-hidden="true" ></i> </span>
-                            <span title="edit"> <i class="fa fa-pencil text-primary fs-5 p-5" aria-hidden="true" ></i> </span>
+                            <span  wire:click="update({{ $department }})" data-bs-toggle="modal" data-bs-target="#updateDepartmentModal" title="edit"> <i class="fa fa-pencil text-primary fs-5 p-5" aria-hidden="true" ></i> </span>
                         </td>
                     </tr>
                     @empty
@@ -73,5 +73,6 @@
     </div>
     @livewire('common.delete')
     @livewire('departments.create-department')
+    @livewire('departments.edit-department')
     <!--end::Card-->
 </div>
