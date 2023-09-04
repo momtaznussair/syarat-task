@@ -7,9 +7,10 @@ use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use App\Livewire\Common\Delete;
 use App\Services\DepartmentService;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class DepartmentList extends Component
 {
@@ -44,8 +45,11 @@ class DepartmentList extends Component
             $departmentService->delete($departmentId);
             $this->dispatch('deleted', $this->department['name'])->to(Delete::class);
             $this->reset('department');
-        } catch (\Exception $e) {
+        } catch (AuthorizationException $e) {
             $this->dispatch('toastError', ['message' => $e->getMessage()]);
+        }
+        catch (\Exception $e) {
+            $this->dispatch('toastError');
         }
     }
 }

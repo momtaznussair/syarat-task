@@ -23,7 +23,7 @@
                 <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
                     <!--begin::Add customer-->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#kt_modal_add_customer">{{ __('Add Department') }}</button>
+                        data-bs-target="#createDepartmentModal">{{ __('Add Department') }}</button>
                     <!--end::Add customer-->
                 </div>
                 <!--end::Toolbar-->
@@ -72,5 +72,6 @@
         <!--end::Card body-->
     </div>
     @livewire('common.delete')
+    @livewire('departments.create-department')
     <!--end::Card-->
 </div>

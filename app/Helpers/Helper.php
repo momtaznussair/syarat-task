@@ -12,3 +12,4 @@ if (! function_exists('moneyFormat')) {
         return $formattedAmount; // Output: $1,234.56
     }
 }
+

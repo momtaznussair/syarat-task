@@ -15,6 +15,10 @@
                 const message = data.length ? data[0].message : 'Operation Completed Successfully!';
                 toastr.success(message);
             });
+
+            Livewire.on('hideModal', () => {
+                $('.modal').modal('hide');
+            });
         });
     </script>
 </div>
