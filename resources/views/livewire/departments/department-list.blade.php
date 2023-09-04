@@ -46,29 +46,20 @@
                 </thead>
                 <tbody class="fw-semibold text-gray-600">
                     @forelse ($departments as $department)
-                    <tr class="text-center" wire:key="{{ $department->id }}">
+                    <tr wire:ignore class="text-center" wire:key="{{ $department->id }}">
                         <td> {{ $department->name }} </td>
                         <td> {{ $department->employees_count == 0 ? 'N/A' : $department->employees_count }} </td>
                         <td>{{ $department->employees_sum_salary ? moneyFormat($department->employees_sum_salary) : 'N/A' }}</td>
 
                         <td>{{ $department->created_at?->toFormattedDateString() }}</td>
                         <td>
-                            <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                            <i class="ki-outline ki-down fs-5 ms-1"></i></a>
-                            <!--begin::Menu-->
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a class="menu-link px-3" wire:click.prevent="set('department', {{ $department }})">Delete</a>
-                                </div>
-                                <!--end::Menu item-->
-                            </div>
-                            <!--end::Menu-->
+                            <span  wire:click="confirmDelete({{ $department }})" title="delete"> <i class="fa fa-trash text-danger fs-5 p-5" aria-hidden="true" ></i> </span>
+                            <span title="edit"> <i class="fa fa-pencil text-primary fs-5 p-5" aria-hidden="true" ></i> </span>
                         </td>
                     </tr>
                     @empty
                         <tr>
-                            <td class="text-center" colspan="3">No Results Found</td>
+                            <td class="text-center" colspan="5">No Results Found</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -82,19 +73,4 @@
     </div>
     @livewire('common.delete')
     <!--end::Card-->
-    {{-- <x-layouts.page-scripts>
-        <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
-    </x-layouts.page-scripts>
-
-    <x-layouts.page-styles>
-        <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
-		<script src="assets/js/custom/apps/customers/list/list.js"></script>
-		<script src="assets/js/custom/apps/customers/add.js"></script>
-		<script src="assets/js/widgets.bundle.js"></script>
-		<script src="assets/js/custom/widgets.js"></script>
-		<script src="assets/js/custom/apps/chat/chat.js"></script>
-		<script src="assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-		<script src="assets/js/custom/utilities/modals/create-campaign.js"></script>
-		<script src="assets/js/custom/utilities/modals/users-search.js"></script>
-    </x-layouts.page-styles> --}}
 </div>

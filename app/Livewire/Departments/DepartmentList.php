@@ -31,8 +31,9 @@ class DepartmentList extends Component
         ]);
     }
 
-    public function updatedDepartment() {
-        $this->department && $this->dispatch('confirmDeletion', $this->department)->to(Delete::class);
+    public function confirmDelete($department) {
+        $this->department = $department;
+        $this->dispatch('confirmDeletion', $department)->to(Delete::class);
     }
 
 
