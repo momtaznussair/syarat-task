@@ -104,8 +104,11 @@
                         <!--end::Menu separator-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="../../demo6/dist/authentication/layouts/corporate/sign-in.html" class="menu-link px-5">Sign Out</a>
-                        </div>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                    <button class="menu-link px-5 border-0 bg-white w-50" type="submit" >Sign Out</button>
+                            </form>
+                        </div> 
                         <!--end::Menu item-->
                     </div>
                     <!--end::User account menu-->

@@ -1,7 +1,10 @@
 <?php
 
+use App\Livewire\Auth\Login;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Departments\DepartmentList;
 use App\Livewire\Departments\CreateDepartment;
+use App\Http\Controllers\Auth\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +17,25 @@ use App\Livewire\Departments\CreateDepartment;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome'); // Example default route
-})->name('home');
 
-// Department Routes
-Route::prefix('departments')->name('departments.')->group(function () {
-    Route::get('create', CreateDepartment::class)->name('create');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('welcome'); // Example default route
+    })->name('home');
+    
+    // Department Routes
+    Route::prefix('departments')->name('departments.')->group(function () {
+        Route::get('/', DepartmentList::class)->name('list');
+        Route::get('create', CreateDepartment::class)->name('create');
+    });
+
+    //logout
+    Route::post('/logout', LogoutController::class)->name('logout');
+
+});
+
+//Auth
+Route::middleware(['guest'])->prefix('auth')->group(function () {
+    Route::get('login', Login::class)->name('login');
 });

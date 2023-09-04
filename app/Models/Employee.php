@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 
 class Employee extends Authenticatable
 {
@@ -58,5 +60,11 @@ class Employee extends Authenticatable
     public function department() {
         return $this->belongsTo(Department::class);
     }
+
+   /** Define an accessor for the full_name attribute **/
+   public function getFullNameAttribute()
+   {
+       return $this->first_name . ' ' . $this->last_name;
+   }
 
 }

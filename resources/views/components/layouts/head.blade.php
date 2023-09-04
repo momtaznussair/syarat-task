@@ -2,6 +2,7 @@
     <title>
         {{ $title ?? 'Syaaraat PHP Task' }}
     </title>
+    <base href="../../../"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {{-- begin::Fonts(mandatory for all pages) --}}

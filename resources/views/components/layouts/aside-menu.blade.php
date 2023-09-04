@@ -16,26 +16,26 @@
             <!--begin::Menu-->
             <div class="menu menu-column menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500 fw-semibold" id="#kt_aside_menu" data-kt-menu="true">
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item py-2">
+                <div class="menu-item py-2">
                     <!--begin:Menu link-->
-                    <span class="menu-link menu-center">
+                    <a href="{{ route('home') }}" class="menu-link menu-center">
                         <span class="menu-icon me-0">
                             <i class="ki-outline ki-home-2 fs-2x"></i>
                         </span>
                         <span class="menu-title">Home</span>
-                    </span>
+                    </a>
                     <!--end:Menu link-->
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item py-2">
+                <div class="menu-item py-2">
                     <!--begin:Menu link-->
-                    <span class="menu-link menu-center">
+                    <a href="{{ route('departments.list') }}" class="menu-link menu-center">
                         <span class="menu-icon me-0">
                             <i class="ki-outline ki-notification-status fs-2x"></i>
                         </span>
-                        <span class="menu-title">Pages</span>
-                    </span>
+                        <span class="menu-title">Departments</span>
+                    </a>
                     <!--end:Menu link-->
                 </div>
                 <!--end:Menu item-->
@@ -46,7 +46,19 @@
                         <span class="menu-icon me-0">
                             <i class="ki-outline ki-abstract-35 fs-2x"></i>
                         </span>
-                        <span class="menu-title">Utilities</span>
+                        <span class="menu-title">Employees</span>
+                    </span>
+                    <!--end:Menu link-->
+                </div>
+                <!--end:Menu item-->
+                 <!--begin:Menu item-->
+                 <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item py-2">
+                    <!--begin:Menu link-->
+                    <span class="menu-link menu-center">
+                        <span class="menu-icon me-0">
+                            <i class="ki-outline ki-abstract-26 fs-2x"></i>
+                        </span>
+                        <span class="menu-title">Tasks</span>
                     </span>
                     <!--end:Menu link-->
                 </div>
