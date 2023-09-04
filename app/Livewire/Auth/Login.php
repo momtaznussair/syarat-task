@@ -27,7 +27,7 @@ class Login extends Component
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
             // Authentication successful
-            return redirect()->to('/');
+            return redirect()->route('departments.list');
         } else {
             // Authentication failed
             session()->flash('error', 'Invalid credentials. Please try again.');
